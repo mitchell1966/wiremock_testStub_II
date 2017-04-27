@@ -18,6 +18,7 @@ import static com.github.tomakehurst.wiremock.client.WireMock.*;
 public class testing {
     Response resp;
     String jsonAsString = "";
+    String jsonData = "";
     JSONObject fileName;
     WireMockServer wireMockRun;
     String balanceCheckUrlRegex = "/pttg/financialstatus/v1/accounts/\\d{6}/\\d{8}/dailybalancestatus*";
@@ -25,7 +26,12 @@ public class testing {
     WireMockServer wm = new WireMockServer(8082);
     Logger LOGGER = LoggerFactory.getLogger(testing.class);
 
-    public void setup() {
+    public void setup(String jsonData) {
+        try {
+          this.jsonData =  loadData(jsonData).toJSONString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         wireMockRun = wm;
         wireMockRun.start();
         WireMock.configureFor("localhost", 8082);
@@ -49,21 +55,20 @@ public class testing {
 
     }
 
-    public void exactUrlOnly(String file,String url) throws Exception {
+    public void exactUrlOnly(String url) throws Exception {
+        url = balanceCheckUrlRegex;
 
-        loadData(file);
-
-        stubFor(WireMock.get(urlPathMatching(url))
+        stubFor(get(urlPathMatching(url))
                 .willReturn(aResponse()
-                        .withBody(String.valueOf(loadData(file)))
+                        .withBody(jsonData)
                         .withHeader("Content-Type", "application/json")
                         .withStatus(200)));
-        System.out.println("Printing " + String.valueOf(loadData(file)));
+        System.out.println("Printing " + jsonData);
 //        assertEquals(resp.getStatusCode(), 200);
 
     }
 
-    public void consenttUrlOnly(String file) throws Exception {
+    public void consenttUrlOnly(String file, String url) throws Exception {
 
         loadData(file);
 
