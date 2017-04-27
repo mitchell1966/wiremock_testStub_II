@@ -57,7 +57,6 @@ public class testing {
 
     public void exactUrlOnly(String url) throws Exception {
         url = balanceCheckUrlRegex;
-
         stubFor(get(urlPathMatching(url))
                 .willReturn(aResponse()
                         .withBody(jsonData)
@@ -65,19 +64,19 @@ public class testing {
                         .withStatus(200)));
         System.out.println("Printing " + jsonData);
 //        assertEquals(resp.getStatusCode(), 200);
-
+        //return jsonData;
     }
 
-    public void consenttUrlOnly(String file, String url) throws Exception {
+    public void consenttUrlOnly(String url) throws Exception {
 
-        loadData(file);
+        url = consentCheckUrkRegex;
 
         stubFor(WireMock.get(urlPathMatching(consentCheckUrkRegex))
                 .willReturn(aResponse()
-                        .withBody(String.valueOf(loadData(file)))
+                        .withBody(jsonData)
                         .withHeader("Content-Type", "application/json")
                         .withStatus(200)));
-        System.out.println("Printing " + String.valueOf(loadData(file)));
+        System.out.println("Printing " + jsonData);
 
 
     }
