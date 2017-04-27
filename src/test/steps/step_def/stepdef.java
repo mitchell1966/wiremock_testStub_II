@@ -163,7 +163,7 @@ public class stepdef {
     @Given("^consent is granted for the following$")
     public void consent_is_granted_for_the_following(DataTable arg1) throws Throwable {
         this.getTableData(arg1);
-        ts.consenttUrlOnly(accountNumber,"");
+        ts.consenttUrlOnly("/pttg/financialstatus/v1/accounts/\\d{6}/\\d{8}/dailybalancestatus*");
         consent = get("http://localhost:8080/pttg/financialstatus/v1/accounts/{sortCode}/{accountNumber}/consent?dob={dob}", sortCode, accountNumber,dob);
         jsonAsString = consent.asString();
 
