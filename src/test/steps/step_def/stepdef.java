@@ -147,7 +147,7 @@ public class stepdef {
     public void the_loaded_data_is(String arg) {
         ts.setup(arg);
         try {
-            ts.exactUrlOnly("/pttg/financialstatus/v1/accounts/\\d{6}/\\d{8}/dailybalancestatus*");
+            ts.exactUrlOnly("/pttg/financialstatus/v1.*");
         } catch (Exception e) {
             e.printStackTrace();
         }

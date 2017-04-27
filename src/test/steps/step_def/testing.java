@@ -56,8 +56,8 @@ public class testing {
     }
 
     public void exactUrlOnly(String url) throws Exception {
-        url = balanceCheckUrlRegex;
-        stubFor(get(urlPathMatching(url))
+        //url = balanceCheckUrlRegex;
+        stubFor(get(anyUrl())
                 .willReturn(aResponse()
                         .withBody(jsonData)
                         .withHeader("Content-Type", "application/json")

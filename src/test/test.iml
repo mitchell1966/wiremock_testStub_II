@@ -118,15 +118,6 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Downloads/servlet-api-2.5.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
           <root url="jar://$USER_HOME$/Downloads/jetty-runner-8.1.9.v20130131.jar!/" />
         </CLASSES>
         <JAVADOC />
@@ -413,6 +404,15 @@
       <library>
         <CLASSES>
           <root url="jar://$USER_HOME$/Downloads/json-simple-1.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/Downloads/servlet-api-3.0.20100224.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

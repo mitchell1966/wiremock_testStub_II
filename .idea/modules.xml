@@ -5,7 +5,6 @@
       <module fileurl="file://$PROJECT_DIR$/src/test/test.iml" filepath="$PROJECT_DIR$/src/test/test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/wiremock_testStub_II.iml" filepath="$PROJECT_DIR$/.idea/modules/wiremock_testStub_II.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/wiremock_testStub_II_main.iml" filepath="$PROJECT_DIR$/.idea/modules/wiremock_testStub_II_main.iml" group="wiremock_testStub_II" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/wiremock_testStub_II_test.iml" filepath="$PROJECT_DIR$/.idea/modules/wiremock_testStub_II_test.iml" group="wiremock_testStub_II" />
     </modules>
   </component>
 </project>
