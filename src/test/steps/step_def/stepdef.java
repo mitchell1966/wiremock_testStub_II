@@ -43,7 +43,8 @@ public class stepdef {
     String originalCourseStartDate = "";
     String dependanstOnly = "";
     String recognisedBodyOrHEI = "";
-
+    String balanceCheckUrlRegex = "/financialstatus/v1.*";
+    String consentCheckUrkRegex = "/financialstatus/v1.*";
 
 //@Before
 //        public void init(){
@@ -147,7 +148,7 @@ public class stepdef {
     public void the_loaded_data_is(String arg) {
         ts.setup(arg);
         try {
-            ts.exactUrlOnly("/pttg/financialstatus/v1.*");
+            ts.exactUrlOnly(balanceCheckUrlRegex);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -163,7 +164,8 @@ public class stepdef {
     @Given("^consent is granted for the following$")
     public void consent_is_granted_for_the_following(DataTable arg1) throws Throwable {
         this.getTableData(arg1);
-        ts.consenttUrlOnly("/pttg/financialstatus/v1/accounts/\\d{6}/\\d{8}/dailybalancestatus*");
+        ts.setup(accountNumber);
+        ts.consenttUrlOnly(balanceCheckUrlRegex);
         consent = get("http://localhost:8080/pttg/financialstatus/v1/accounts/{sortCode}/{accountNumber}/consent?dob={dob}", sortCode, accountNumber,dob);
         jsonAsString = consent.asString();
 
@@ -173,6 +175,7 @@ public class stepdef {
     @When("^the endpoint is called$")
     public void the_endpoint_is_called(DataTable arg) {
         this.getTableData(arg);
+        ts.setup(accountNumber);
         resp = get("http://localhost:8080/pttg/financialstatus/v1/accounts/{sortCode}/{accountNumber}/dailybalancestatus?fromDate={fromDate}&toDate={toDate}&minimum={minimum}&dob={dob}", sortCode, accountNumber, fromDate, toDate, minimum, dob);
         jsonAsString = resp.asString();
 

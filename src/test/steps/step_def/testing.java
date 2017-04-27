@@ -8,6 +8,7 @@ import org.json.simple.parser.JSONParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
 import java.io.FileReader;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
@@ -19,6 +20,7 @@ public class testing {
     Response resp;
     String jsonAsString = "";
     String jsonData = "";
+    String filePath = "";
     JSONObject fileName;
     WireMockServer wireMockRun;
     String balanceCheckUrlRegex = "/pttg/financialstatus/v1/accounts/\\d{6}/\\d{8}/dailybalancestatus*";
@@ -47,8 +49,11 @@ public class testing {
     }
 
     public JSONObject loadData(String file_Name) throws Exception {
+        File dataFolder = new File("resources");
+        filePath = dataFolder.getAbsolutePath();
+        System.out.println(filePath);
         JSONParser parser = new JSONParser();
-        Object obj = parser.parse(new FileReader("/home/mitchell/Documents/HMRC/wiremock_testStub_II/src/test/resources/account_data/" + file_Name + ".json"));
+        Object obj = parser.parse(new FileReader(filePath+"/account_data/" + file_Name + ".json"));
         JSONObject js = (JSONObject) obj;
         fileName = js;
         return fileName;
@@ -56,22 +61,19 @@ public class testing {
     }
 
     public void exactUrlOnly(String url) throws Exception {
-        //url = balanceCheckUrlRegex;
-        stubFor(get(anyUrl())
+
+        stubFor(get(urlMatching(url))
                 .willReturn(aResponse()
                         .withBody(jsonData)
                         .withHeader("Content-Type", "application/json")
                         .withStatus(200)));
         System.out.println("Printing " + jsonData);
-//        assertEquals(resp.getStatusCode(), 200);
-        //return jsonData;
+
     }
 
     public void consenttUrlOnly(String url) throws Exception {
 
-        url = consentCheckUrkRegex;
-
-        stubFor(WireMock.get(urlPathMatching(consentCheckUrkRegex))
+        stubFor(WireMock.get(urlPathMatching(url))
                 .willReturn(aResponse()
                         .withBody(jsonData)
                         .withHeader("Content-Type", "application/json")
