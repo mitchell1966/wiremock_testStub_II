@@ -1,0 +1,19 @@
+<acceptance-test-run title="Wiremock" name="wiremock" description="" steps="4" successful="0" failures="0" skipped="0" ignored="0" pending="4" annotated-result="PENDING" result="PENDING" duration="77" timestamp="2017-04-19T15:06:48.704+01:00">
+  <user-story id="test" name="test" path="wiremock.feature"/>
+  <tags>
+    <tag name="test" type="feature"/>
+    <tag name="SmokeTest" type="tag"/>
+  </tags>
+  <test-step result="PENDING" duration="0">
+    <description>Given the loaded data is 01078913</description>
+  </test-step>
+  <test-step result="PENDING" duration="0">
+    <description>Given the endpoint is ready</description>
+  </test-step>
+  <test-step result="PENDING" duration="0">
+    <description>When the endpoint is called</description>
+  </test-step>
+  <test-step result="PENDING" duration="0">
+    <description>Then stuff happens</description>
+  </test-step>
+</acceptance-test-run>
